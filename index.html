@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Régional du Budget — Rigueur, transparence, proximité</title>
+  <meta name="description" content="Site vitrine du Service Régional du Budget : missions, divisions, actualités et dossiers.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Application JavaScript -->
+ <script src="app.js" defer></script>
+</head>
+<body>
+
+<!-- ============ FOND DÉCORATIF ============ -->
+<div class="grain" aria-hidden="true"></div>
+<img src="picsrb/ChatGPT Image 7 oct. 2026, 14_39_59.png" alt="" class="logo-bg" aria-hidden="true">
+
+<!-- ============ EN-TÊTE FIXE ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+
+    <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+
+    <a href="#/accueil" class="logo" data-route="accueil">
+      <img src="picsrb/ChatGPT Image 7 oct. 2026, 14_39_59.png" alt="Service Régional du Budget" class="logo-img">
+      <span class="logo-text">Service Régional<br>du Budget</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navigation principale">
+      <a href="#/accueil" data-route="accueil">Accueil</a>
+      <a href="#/dossiers" data-route="dossiers">Dossiers</a>
+      <a href="#/actualites" data-route="actualites">Actualités</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false">Divisions</button>
+        <div class="nav-dropdown-menu">
+          <a href="#/division/programmation" data-route="division-programmation">Execution budgetaire &amp;Remboursement des Frais Médicaux</a>
+          <a href="#/division/execution" data-route="division-execution">Patrimoine de l'Etat</a>
+          <a href="#/division/recettes" data-route="division-recettes">Finance Local&amp; Tutelles des EPN </a>
+          <a href="#/division/controle" data-route="division-controle">Centre Informatique Régional</a>
+        </div>
+      </div>
+      <a href="#/organigramme" data-route="organigramme">Organigramme</a>
+      <a href="#/a-propos" data-route="a-propos">Le Bureau</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Bouton Switch Mode Sombre / Mode Clair -->
+      <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Changer le thème">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
+      <div class="search-box">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="search" id="searchInput" placeholder="Rechercher un dossier, une actualité…" aria-label="Recherche">
+        <div class="search-results" id="searchResults" hidden></div>
+      </div>
+      <a href="#/contact" class="btn btn-primary" data-route="contact">Nous contacter</a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============ TIROIR / BURGER MENU ============ -->
+<div class="drawer-scrim" id="drawerScrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-bar">
+    <button class="burger burger--close" id="drawerClose" aria-label="Fermer le menu"><span></span><span></span><span></span></button>
+    <span class="drawer-bar-title">Menu</span>
+  </div>
+  <nav class="drawer-nav" aria-label="Navigation mobile">
+    <a href="#/accueil" data-route="accueil">Accueil</a>
+    <a href="#/dossiers" data-route="dossiers">Dossiers</a>
+    <a href="#/actualites" data-route="actualites">Actualités</a>
+    <a href="#/division/programmation" data-route="division-programmation">Div.Execution budgetaire &amp;Remboursement des Frais Médicaux</a>
+    <a href="#/division/execution" data-route="division-execution">Div.Patrimoine de l'Etat</a>
+    <a href="#/division/recettes" data-route="division-recettes">Div.Finance Local&amp; Tutelles des EPN </a>
+    <a href="#/division/controle" data-route="division-controle">Div. Centre Informatique Régional</a>
+    <a href="#/organigramme" data-route="organigramme">Organigramme</a>
+    <a href="#/a-propos" data-route="a-propos">Le Bureau</a>
+    <a href="#/contact" data-route="contact">Contact</a>
+  </nav>
+  <div class="drawer-foot">
+    <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+   
+  </div>
+</aside>
+
+<main id="app">
+
+<!-- ============================================================ -->
+<!-- PAGE : ACCUEIL                                                -->
+<!-- ============================================================ -->
+<section class="page" id="page-accueil" data-page="accueil">
+  <div class="hero">
+    <div class="hero-copy">
+      <p class="hero-kicker">Exercice budgétaire en cours</p>
+      <h1>La rigueur des chiffres, au service du territoire.</h1>
+      <p class="hero-lead">Le Service Régional du Budget programme, exécute et contrôle les finances publiques régionales, en lien direct avec les collectivités, les directions sectorielles et les citoyens.</p>
+      <div class="hero-actions">
+        <a href="#/dossiers" class="btn btn-primary" data-route="dossiers">Explorer les dossiers</a>
+        <a href="#/organigramme" class="btn btn-ghost btn-org" data-route="organigramme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="2" y="16" width="6" height="5" rx="1"/><rect x="9" y="16" width="6" height="5" rx="1"/><rect x="16" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M5 16v-4h14v4M12 12v4"/></svg>
+          Voir l'organigramme
+        </a>
+        <a href="#/a-propos" class="btn btn-ghost" data-route="a-propos">Rencontrer le bureau</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>4</strong><span>Divisions opérationnelles</span></div>
+        <div><strong>18</strong><span>Programmes suivis</span></div>
+        <div><strong>96%</strong><span>Taux d'exécution 2025</span></div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-panel hero-panel--a">
+        <span class="hero-panel-tag">Exécution</span>
+        <div class="bar-chart">
+          <i style="--h:38%"></i><i style="--h:62%"></i><i style="--h:51%"></i><i style="--h:74%"></i><i style="--h:88%"></i><i style="--h:96%"></i>
+        </div>
+      </div>
+      <div class="hero-panel hero-panel--b">
+        <span class="hero-panel-tag">Recettes locales</span>
+        <div class="ring-chart" style="--pct:71"><span>71%</span></div>
+      </div>
+      <div class="hero-panel hero-panel--c">
+        <span class="hero-panel-tag">Prochaine session</span>
+        <p>Comité de suivi budgétaire</p>
+        <time>14 septembre</time>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <div>
+      <p class="section-kicker">À la une</p>
+      <h2>Ce qui se passe au Service</h2>
+    </div>
+    <a href="#/actualites" class="link-more" data-route="actualites">Tout voir</a>
+  </div>
+
+  <div class="masonry" id="homeMasonry"></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE : DOSSIERS                                               -->
+<!-- ============================================================ -->
+<section class="page" id="page-dossiers" data-page="dossiers">
+  <div class="page-hero page-hero--dossiers">
+    <p class="section-kicker">Études de cas</p>
+    <h1>Dossiers</h1>
+    <p class="page-hero-lead">Analyses approfondies sur l'exécution budgétaire, la fiscalité locale et les grands programmes d'investissement de la région.</p>
+  </div>
+
+  <div class="filter-bar" id="dossierFilters"></div>
+  <div class="card-grid card-grid--dossiers" id="dossierGrid"></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE : ACTUALITÉS                                             -->
+<!-- ============================================================ -->
+<section class="page" id="page-actualites" data-page="actualites">
+  <div class="page-hero page-hero--actu">
+    <p class="section-kicker">Flux d'informations</p>
+    <h1>Actualités</h1>
+    <p class="page-hero-lead">Communiqués, formations, événements et rapports publiés par le Service Régional du Budget.</p>
+  </div>
+
+  <div class="filter-bar" id="actuFilters"></div>
+  <div class="card-grid card-grid--actu" id="actuGrid"></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- GABARIT DE PAGE DIVISION                                      -->
+<!-- ============================================================ -->
+<template id="division-template">
+  <section class="page" data-page="">
+    <div class="division-header">
+      <p class="section-kicker division-eyebrow"></p>
+      <h1 class="division-title"></h1>
+      <p class="division-lead"></p>
+    </div>
+
+    <nav class="pill-nav" aria-label="Navigation de la division">
+      <a href="#" data-anchor="apercu">Aperçu</a>
+      <a href="#" data-anchor="missions">Missions</a>
+      <a href="#" data-anchor="equipe">Équipe</a>
+      <a href="#" data-anchor="ressources">Ressources</a>
+      <a href="#" data-anchor="contact-div">Contact</a>
+    </nav>
+
+    <div class="team-section" data-anchor-target="equipe">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Le bureau de la division</p>
+          <h2>Une équipe, un mandat</h2>
+        </div>
+      </div>
+      <div class="carousel" data-carousel>
+        <button class="carousel-arrow carousel-arrow--prev" aria-label="Membre précédent">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="carousel-track" data-track></div>
+        <button class="carousel-arrow carousel-arrow--next" aria-label="Membre suivant">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="carousel-nametag" data-nametag>
+          <strong data-nametag-name></strong>
+          <span data-nametag-role></span>
+        </div>
+        <div class="carousel-dots" data-dots></div>
+      </div>
+    </div>
+
+    <div class="triptych" data-anchor-target="missions">
+      <div class="triptych-col" data-col="left"></div>
+      <div class="triptych-center" data-col="center"></div>
+      <div class="triptych-col" data-col="right"></div>
+    </div>
+
+    <div class="division-band" data-anchor-target="apercu"></div>
+
+    <div class="resources-section" data-anchor-target="ressources">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Aller plus loin</p>
+          <h2>Ressources &amp; documents</h2>
+        </div>
+      </div>
+      <div class="resource-list" data-resources></div>
+    </div>
+
+    <div class="contact-panel" data-anchor-target="contact-div">
+      <div class="contact-copy">
+        <p class="section-kicker">Un dossier à soumettre&nbsp;?</p>
+        <h2>Écrivez directement à la division</h2>
+        <p>L'équipe répondra avant 3 jours . Pour toute urgence, contactez le secrétariat général.</p>
+        <ul class="contact-meta" data-contact-meta></ul>
+      </div>
+      <form class="contact-form" data-division-form>
+        <label>Nom complet
+          <input type="text" name="nom" required placeholder="Rasoanaivo Hery">
+        </label>
+        <label>Adresse e-mail
+          <input type="email" name="email" required placeholder="vous@exemple.mg">
+        </label>
+        <label>Objet
+          <input type="text" name="objet" required placeholder="Demande d'information">
+        </label>
+        <label>Message
+          <textarea name="message" rows="4" required placeholder="Votre message…"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Envoyer le message</button>
+        <p class="form-note" data-form-note hidden>Merci — votre message a été transmit à la division.</p>
+      </form>
+    </div>
+  </section>
+</template>
+
+<div id="divisionMount"></div>
+
+<!-- ============================================================ -->
+<!-- PAGE : ORGANIGRAMME                                           -->
+<!-- ============================================================ -->
+<section class="page" id="page-organigramme" data-page="organigramme">
+  <div class="page-hero page-hero--org">
+    <p class="section-kicker">Structure</p>
+    <h1>Organigramme</h1>
+    <p class="page-hero-lead">Structure du Service Régional du Budget : services rattachés à la direction, quatre divisions et leurs bureaux. Cliquez sur une division pour ouvrir sa page.</p>
+  </div>
+
+  <div class="ot" id="orgChart"></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE : À PROPOS / LE BUREAU                                   -->
+<!-- ============================================================ -->
+<section class="page" id="page-a-propos" data-page="a-propos">
+  <div class="page-hero page-hero--about">
+    <p class="section-kicker">Organisation</p>
+    <h1>Le Bureau du Service</h1>
+    <p class="page-hero-lead">Onze agents, quatre divisions, une seule mission&nbsp;: mettre les finances publiques régionales au service de l'intérêt général.</p>
+  </div>
+
+  <div class="team-section">
+    <div class="carousel carousel--large" data-carousel="full">
+      <button class="carousel-arrow carousel-arrow--prev" aria-label="Membre précédent">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="carousel-track" data-track></div>
+      <button class="carousel-arrow carousel-arrow--next" aria-label="Membre suivant">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="carousel-nametag" data-nametag>
+        <strong data-nametag-name></strong>
+        <span data-nametag-role></span>
+      </div>
+      <div class="carousel-dots" data-dots></div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <div>
+      <p class="section-kicker">Organigramme</p>
+      <h2>Les quatre divisions</h2>
+    </div>
+  </div>
+  <div class="division-grid" id="orgGrid"></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE : CONTACT                                                -->
+<!-- ============================================================ -->
+<section class="page" id="page-contact" data-page="contact">
+  <div class="page-hero page-hero--contact">
+    <p class="section-kicker">Nous écrire</p>
+    <h1>Contacter le Service</h1>
+    <p class="page-hero-lead">Une question générale, une demande de rendez-vous ou un besoin d'orientation vers la bonne division&nbsp;? Le secrétariat général vous répond.</p>
+  </div>
+
+  <div class="contact-panel contact-panel--standalone">
+    <div class="contact-copy">
+      <p class="section-kicker">Coordonnées</p>
+      <h2>Secrétariat général</h2>
+      <ul class="contact-meta">
+        <li>Immeuble régional,Beravina Fianarantsoa</li>
+        <li>secretariat@budget-regional.mg</li>
+        <li>+261 20 22 000 00</li>
+        <li>Lundi–Vendredi, 8h–16h</li>
+      </ul>
+    </div>
+    <form class="contact-form" id="generalContactForm">
+      <label>Nom complet
+        <input type="text" name="nom" required placeholder="Votre nom">
+      </label>
+      <label>Adresse e-mail
+        <input type="email" name="email" required placeholder="vous@exemple.mg">
+      </label>
+      <label>Division concernée
+        <select name="division">
+          <option value="secretariat">Je ne sais pas encore</option>
+          <option value="programmation">Execution budgetaire &amp;Remboursement des Frais Médicaux</option>
+          <option value="execution">Patrimoine de l'Etat</option>
+          <option value="recettes">Finance Local&amp; Tutelles des EPN</option>
+          <option value="controle">Centre Informatique Régional</option>
+        </select>
+      </label>
+      <label>Objet
+        <input type="text" name="objet" placeholder="Demande d'information">
+      </label>
+      <label>Message
+        <textarea name="message" rows="4" required placeholder="Votre message…"></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary">Envoyer le message</button>
+      <p class="form-note" id="generalFormNote" hidden>Merci — votre message a été transmis au secrétariat.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ PIED DE PAGE ============ -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="picsrb/ChatGPT Image 7 oct. 2026, 14_39_59.png" alt="Service Régional du Budget" class="footer-logo">
+      <p>Service Régional du Budget. Programmation, exécution et contrôle des finances publiques régionales.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H8v4h2v6h4v-6h3l1-4h-4v-2c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+        </a>
+       
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><path d="M8.5 11v5M12 11v5M12 13c0-1.5 3.5-2 3.5 0v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Naviguer</h3>
+      <a href="#/accueil" data-route="accueil">Accueil</a>
+      <a href="#/dossiers" data-route="dossiers">Dossiers</a>
+      <a href="#/actualites" data-route="actualites">Actualités</a>
+      <a href="#/organigramme" data-route="organigramme">Organigramme</a>
+      <a href="#/a-propos" data-route="a-propos">Le Bureau</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Divisions</h3>
+      <a href="#/division/programmation" data-route="division-programmation">Execution budgetaire &amp;Remboursement des Frais Médicaux</a>
+      <a href="#/division/execution" data-route="division-execution">Patrimoine de l'Etat</a>
+      <a href="#/division/recettes" data-route="division-recettes">Finance Local&amp; Tutelles des EPN</a>
+      <a href="#/division/controle" data-route="division-controle">Centre Informatique Régional</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Ressources</h3>
+      <a href="https://www.mef.gov.mg/" target="_blank" rel="noopener">Ministère de l'Economie et des FinanceS ↗</a>
+      <a href="https://www.dgbf.mg/" target="_blank" rel="noopener">DGBF↗</a>
+      <a href="https://sysinfo.mef.gov.mg:9801/portail/portail#/application" target="_blank" rel="noopener">Portail MEF↗</a>
+      <a href="#/contact" data-route="contact">Nous contacter</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Service Régional du Budget — Haute Matsiatra.</span>
+    <span>Site vitrine — contenu de démonstration.</span>
+  </div>
+</footer>
+
+</body>
+</html>
